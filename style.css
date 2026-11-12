@@ -1,0 +1,702 @@
+/* Котоклетки. Цвета темы — переменные: событие из content.json может их заменить. */
+:root {
+  --bg: #FFF6EA;
+  --bg2: #FFE4C7;
+  --ink: #4A3426;
+  --ink-soft: #8B705D;
+  --accent: #EE7F52;
+  --accent-dark: #C9592E;
+  --card: #FFFFFF;
+  --line: #5A4233;
+  --bad: #DE4F49;
+  --shadow: 0 4px 0 rgba(90, 66, 51, 0.18);
+}
+
+* { box-sizing: border-box; }
+
+html, body { height: 100%; margin: 0; }
+
+body {
+  overflow: hidden;
+  overscroll-behavior: none;
+  background: linear-gradient(180deg, var(--bg), var(--bg2));
+  color: var(--ink);
+  font: 600 18px/1.3 "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+  /* Крупнее на больших экранах; строка выше — запасной размер для старых браузеров. */
+  font-size: clamp(17px, 1.1vmin + 12px, 22px);
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  touch-action: manipulation;
+}
+
+button { font: inherit; color: inherit; border: 0; background: none; padding: 0; margin: 0; cursor: pointer; }
+button:disabled { opacity: 0.45; cursor: default; }
+p { margin: 0; }
+[hidden] { display: none !important; }
+
+#app { position: fixed; top: 0; right: 0; bottom: 0; left: 0; display: flex; justify-content: center; }
+
+.screen {
+  display: none;
+  flex-direction: column;
+  width: 100%;
+  max-width: 760px;
+  height: 100%;
+  padding: max(10px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+}
+.screen.is-active { display: flex; }
+
+/* Значки */
+.ico { display: inline-flex; width: 1.3em; height: 1.3em; flex: none; }
+.ico svg { width: 100%; height: 100%; display: block; }
+
+/* Верхняя полоса */
+.topbar { display: flex; align-items: center; gap: 8px; min-height: 54px; flex: none; }
+.spacer { flex: 1; }
+.screen-title { font-size: 1.15em; font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--card); border-radius: 999px; padding: 7px 14px;
+  box-shadow: var(--shadow); font-variant-numeric: tabular-nums;
+}
+.icon-btn {
+  width: 50px; height: 50px; border-radius: 50%; background: var(--card);
+  box-shadow: var(--shadow); display: inline-flex; align-items: center; justify-content: center; flex: none;
+}
+.icon-btn:active, .btn:active, .ctl:active { transform: translateY(3px); box-shadow: none; }
+.paw { color: var(--accent); width: 1.15em; height: 1.15em; }
+.paw.is-lost { color: #D8CABD; }
+
+/* Кнопки */
+.btn {
+  min-height: 60px; border-radius: 18px; background: var(--card); box-shadow: var(--shadow);
+  padding: 10px 18px; font-weight: 800; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; text-align: center;
+}
+.btn small { font-size: 0.78em; font-weight: 600; color: var(--ink-soft); margin-top: 2px; }
+.btn-primary { background: var(--accent); color: #FFFFFF; box-shadow: 0 4px 0 var(--accent-dark); }
+.btn-big { min-height: 72px; font-size: 1.3em; }
+.btn-daily.is-done { background: #E9F6EC; }
+.btn-small { min-height: 46px; padding: 6px 12px; border-radius: 14px; font-size: 0.9em; width: 100%; }
+.btn-line { display: inline-flex; align-items: center; gap: 6px; }
+.btn-row { display: flex; gap: 12px; }
+.btn-row .btn { flex: 1; }
+
+/* Загрузка */
+.loading { margin: auto; text-align: center; }
+.loading-cat { width: min(40vmin, 180px); margin: 0 auto 12px; animation: breathe 1.6s ease-in-out infinite; }
+
+/* Дом */
+.home-main {
+  flex: 1; min-height: 0; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 12px;
+}
+.logo { margin: 0; font-size: clamp(32px, 8.5vmin, 56px); font-weight: 900; color: var(--accent-dark); letter-spacing: 0.5px; }
+.home-cat { width: min(36vmin, 220px); animation: breathe 3.4s ease-in-out infinite; }
+.home-cat .cat, .loading-cat .cat { width: 100%; height: auto; display: block; }
+.event-banner {
+  background: var(--card); border-radius: 14px; padding: 8px 14px; font-size: 0.85em;
+  text-align: center; box-shadow: var(--shadow); max-width: 420px;
+}
+.home-buttons { width: min(100%, 420px); display: flex; flex-direction: column; gap: 12px; }
+
+/* Игра */
+.game-body { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 10px; align-items: center; padding-top: 4px; }
+.board-col { flex: 1; min-height: 0; width: 100%; display: flex; flex-direction: column; gap: 8px; }
+.coach {
+  background: var(--card); border-radius: 14px; padding: 8px 14px; text-align: center;
+  box-shadow: var(--shadow); font-size: 0.95em; flex: none;
+}
+.board-wrap { flex: 1; min-height: 0; width: 100%; display: flex; align-items: center; justify-content: center; }
+.board {
+  --n: 5; --thick: 3px;
+  --thin: rgba(74, 52, 38, 0.2); --mark: rgba(74, 52, 38, 0.6);
+  --tex: none; --cell-fx: 0 0 0 0 transparent; --frame: 0 0 0 0 transparent;
+  display: grid; grid-template-columns: repeat(var(--n), 1fr); grid-template-rows: repeat(var(--n), 1fr);
+  border: var(--thick) solid var(--line); border-radius: 14px; overflow: hidden;
+  background: var(--line); touch-action: none;
+  box-shadow: var(--frame), 0 6px 0 rgba(90, 66, 51, 0.2);
+}
+.cell {
+  position: relative; display: flex; align-items: center; justify-content: center;
+  background-color: var(--c, #FFFFFF);
+  background-image: var(--tex);
+  box-shadow:
+    inset 0 var(--bt, 1px) 0 0 var(--btc, var(--thin)),
+    inset var(--bl, 1px) 0 0 0 var(--blc, var(--thin)),
+    var(--cell-fx);
+}
+/* Тёмное оформление: светлые линии и отметки, у кота светлый ореол. */
+.board.is-dark { --thin: rgba(255, 255, 255, 0.2); --mark: rgba(255, 255, 255, 0.8); }
+.board.is-dark .cell .cat { filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.95)); }
+.cell.r0 { --bt: 0px; }
+.cell.c0 { --bl: 0px; }
+.cell.t-thick { --bt: var(--thick); --btc: var(--line); }
+.cell.l-thick { --bl: var(--thick); --blc: var(--line); }
+
+/* Отметка «пусто»: форма — маска SVG из src/marks.js (переменная --mark-shape
+   ставится на поле из скрипта), цвет — --mark из темы. Точка — просто кружок.
+   Отметки, которые игра ставит сама, — та же форма, мельче и бледнее. */
+.cell.mark::after, .cell.auto::after {
+  content: ""; width: 22%; height: 22%; border-radius: 50%; background: var(--mark);
+  -webkit-mask: var(--mark-shape, none) center / contain no-repeat;
+  mask: var(--mark-shape, none) center / contain no-repeat;
+}
+.cell.auto::after { width: 15%; height: 15%; opacity: 0.45; }
+.board:not(.mark-dot) .cell.mark::after { width: 40%; height: 40%; border-radius: 0; }
+.board:not(.mark-dot) .cell.auto::after { width: 24%; height: 24%; border-radius: 0; }
+
+/* Текстуры клеток — узоры поверх цвета комнаты, без картинок. */
+.tex-wood { --tex: repeating-linear-gradient(90deg, rgba(110, 60, 20, 0.07) 0 2px, transparent 2px 9px), repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.12) 0 1px, transparent 1px 23px); }
+.tex-grass { --tex: radial-gradient(circle at 22% 28%, rgba(255, 255, 255, 0.28) 0 7%, transparent 8%), radial-gradient(circle at 72% 72%, rgba(0, 80, 0, 0.12) 0 8%, transparent 9%), repeating-linear-gradient(72deg, rgba(0, 70, 0, 0.08) 0 2px, transparent 2px 7px); }
+.tex-fabric { --tex: repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.09) 0 2px, transparent 2px 7px), repeating-linear-gradient(-45deg, rgba(0, 0, 0, 0.06) 0 2px, transparent 2px 7px); }
+.tex-stars { --tex: radial-gradient(circle at 24% 28%, rgba(255, 255, 255, 0.95) 0 2.5%, transparent 3.5%), radial-gradient(circle at 72% 62%, rgba(255, 255, 255, 0.75) 0 2%, transparent 3%), radial-gradient(circle at 44% 86%, rgba(255, 240, 180, 0.7) 0 2%, transparent 3%), radial-gradient(circle at 86% 14%, rgba(255, 255, 255, 0.6) 0 1.5%, transparent 2.5%); }
+.tex-tiles { --tex: linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0) 45%, rgba(0, 0, 0, 0.1)); }
+.tex-paper { --tex: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.4), transparent 60%), repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.03) 0 1px, transparent 1px 4px); }
+.tex-waves { --tex: repeating-radial-gradient(circle at 50% 130%, rgba(255, 255, 255, 0.25) 0 3px, transparent 3px 10px); }
+.tex-candy { --tex: repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.32) 0 5px, transparent 5px 12px); }
+.tex-snow { --tex: radial-gradient(circle at 20% 25%, #FFFFFF 0 4%, transparent 5%), radial-gradient(circle at 70% 40%, rgba(255, 255, 255, 0.9) 0 3%, transparent 4%), radial-gradient(circle at 40% 78%, rgba(255, 255, 255, 0.85) 0 3.5%, transparent 4.5%), linear-gradient(180deg, rgba(255, 255, 255, 0.25), transparent 70%); }
+
+/* Объём клеток. */
+.cells-soft { --cell-fx: inset 0 0 0 2px rgba(255, 255, 255, 0.28), inset 0 -4px 8px rgba(0, 0, 0, 0.08); }
+.cells-bevel { --cell-fx: inset 2px 2px 0 rgba(255, 255, 255, 0.4), inset -2px -2px 0 rgba(0, 0, 0, 0.12); }
+
+/* Рамки поля: кольца снаружи (место под них оставляет board.js). */
+.frame-wood { --frame: 0 0 0 4px #A0652F, 0 0 0 7px #6B3F18; }
+.frame-gold { --frame: 0 0 0 3px #FFE08A, 0 0 0 6px #C9961A, 0 0 0 7px #8A6410; }
+.frame-candy { --frame: 0 0 0 3px #FFFFFF, 0 0 0 7px #E8638C; }
+.frame-neon { --frame: 0 0 0 3px #8FE3FF, 0 0 12px 5px rgba(120, 210, 255, 0.75); }
+.frame-ice { --frame: 0 0 0 3px #FFFFFF, 0 0 0 7px #9CCBEB; }
+.cell .cat { width: 90%; height: 90%; display: block; pointer-events: none; animation: pop 0.3s cubic-bezier(0.3, 1.6, 0.5, 1); }
+.cell.is-hint::before {
+  content: ""; position: absolute; top: 9%; right: 9%; bottom: 9%; left: 9%; border-radius: 28%;
+  border: 3px solid #FFFFFF; box-shadow: 0 0 0 3px var(--accent);
+  animation: pulse 1s ease-in-out infinite; pointer-events: none;
+}
+.cell.is-wrong { animation: shake 0.4s; }
+.cell.is-wrong::before { content: ""; position: absolute; top: 0; right: 0; bottom: 0; left: 0; background: rgba(222, 79, 73, 0.6); pointer-events: none; }
+.cell.is-locked { animation: shake 0.3s; }
+.cell.is-conflict .cat { animation: wiggle 0.6s; }
+.cell.is-house { filter: brightness(1.14) saturate(1.35); }
+.board.is-won .cat { animation: hop 0.55s ease-in-out infinite alternate; animation-delay: calc(var(--i) * 70ms); }
+
+.controls { display: flex; gap: 10px; width: 100%; justify-content: center; align-items: stretch; flex: none; }
+.ctl {
+  position: relative; flex: 1 1 0; min-width: 0; max-width: 140px; min-height: 64px; border-radius: 16px;
+  background: var(--card); box-shadow: var(--shadow); display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 2px; font-size: 0.8em; padding: 6px 4px;
+}
+.badge {
+  position: absolute; top: -8px; right: -2px; min-width: 28px; height: 28px; padding: 0 6px; border-radius: 14px;
+  background: var(--accent); color: #FFFFFF; font-size: 0.95em; display: inline-flex; align-items: center; justify-content: center;
+}
+.badge svg { width: 18px; height: 18px; }
+.mode-switch { display: flex; flex: none; gap: 4px; padding: 4px; background: var(--card); border-radius: 16px; box-shadow: var(--shadow); }
+.mode-switch button {
+  min-width: 70px; min-height: 56px; border-radius: 12px; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 2px; font-size: 0.8em; color: var(--ink-soft);
+}
+.mode-switch button.is-on { background: var(--accent); color: #FFFFFF; }
+.mark-ico { display: block; width: 100%; height: 100%; background: currentColor; -webkit-mask: var(--mark-shape) center / contain no-repeat; mask: var(--mark-shape) center / contain no-repeat; }
+
+/* Магазин */
+.tabs { display: flex; gap: 4px; padding: 4px; margin-top: 6px; background: var(--card); border-radius: 16px; box-shadow: var(--shadow); flex: none; }
+.tabs button { flex: 1; min-height: 48px; border-radius: 12px; color: var(--ink-soft); font-weight: 800; }
+.tabs button.is-on { background: var(--accent); color: #FFFFFF; }
+.board-mini { --thick: 3px; pointer-events: none; margin: 8px auto; flex: none; }
+.board-mini .cell .cat { width: 86%; height: 86%; animation: none; }
+.card .board-mini { width: 96px; height: 96px; border-radius: 10px; }
+.preview .board-mini { width: 220px; height: 220px; }
+.preview .card-cat { width: 170px; margin: 0 auto; }
+.preview-tags { margin: 6px 0 0; font-size: 0.85em; color: var(--ink-soft); }
+.preview .voice-btn { width: auto; min-height: 40px; margin: 4px auto 0; padding: 4px 14px; display: flex; }
+.preview .voice-btn .ico { width: 20px; height: 20px; }
+.shop-grid {
+  flex: 1; min-height: 0; overflow-y: auto; -webkit-overflow-scrolling: touch; touch-action: pan-y;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px;
+  align-content: start; padding: 10px 6px 14px;
+}
+/* Заголовки блоков «Ваши» и «В магазине» во всю ширину сетки, с линией до края. */
+.shop-section { grid-column: 1 / -1; display: flex; align-items: center; gap: 10px; margin: 8px 4px 0; font-size: 1.05em; font-weight: 900; color: var(--ink); }
+.shop-section:first-child { margin-top: 0; }
+.shop-section::after { content: ""; flex: 1; height: 3px; border-radius: 2px; background: rgba(90, 66, 51, 0.14); }
+.shop-section small { padding: 2px 9px; border-radius: 10px; background: var(--card); box-shadow: var(--shadow); font-size: 0.78em; color: var(--ink-soft); }
+.card {
+  background: var(--card); border-radius: 18px; padding: 10px; box-shadow: var(--shadow);
+  display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center;
+}
+.card { position: relative; cursor: pointer; border: 3px solid transparent; }
+.card.is-worn { outline: 3px solid var(--accent); outline-offset: 2px; }
+.card-cat { width: 72%; }
+.card-cat .cat { width: 100%; height: auto; display: block; overflow: visible; }
+.card.is-locked .card-cat, .card.is-locked .board-mini { opacity: 0.8; }
+/* Редкость: цвет рамки карточки и подпись. */
+.rarity { font-size: 0.68em; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: var(--rar, var(--ink-soft)); }
+.rar-common { --rar: #8B8F96; }
+.rar-rare { --rar: #2F80D1; border-color: #9CC7F0; }
+.rar-epic { --rar: #8E44C9; border-color: #CBA6EE; background: linear-gradient(180deg, #FFFFFF 60%, #F6EEFF); }
+.rar-legendary {
+  --rar: #C47A00; border-color: #F2C14E;
+  background: linear-gradient(180deg, #FFFFFF 55%, #FFF4D6);
+  box-shadow: 0 4px 0 rgba(90, 66, 51, 0.18), 0 0 14px rgba(242, 193, 78, 0.55);
+}
+/* В окне примерки фон окна не меняется, редкость видна по рамке. */
+.modal.preview { background: var(--bg); border: 3px solid var(--rar-border, transparent); }
+.modal.preview.rar-rare { --rar-border: #9CC7F0; }
+.modal.preview.rar-epic { --rar-border: #CBA6EE; }
+.modal.preview.rar-legendary { --rar-border: #F2C14E; box-shadow: 0 10px 0 rgba(60, 40, 28, 0.25), 0 0 24px rgba(242, 193, 78, 0.6); }
+.modal.preview .rarity { display: block; margin-top: -4px; }
+.card .card-cat .cat, .preview .card-cat .cat { overflow: visible; }
+
+/* Эффекты скинов (только вне поля). */
+.fx-twinkle, .fx-float, .fx-glow, .fx-fall { transform-box: fill-box; transform-origin: center; }
+.fx-twinkle { animation: twinkle 1.8s ease-in-out infinite; }
+.fx-float { animation: float-up 2.4s ease-in infinite; }
+.fx-glow { animation: glow-pulse 2.2s ease-in-out infinite; }
+.fx-fall { animation: snow-fall 3s linear infinite; }
+
+/* Частицы победы (effects.js). */
+.fx-layer { position: fixed; top: 0; right: 0; bottom: 0; left: 0; pointer-events: none; z-index: 25; overflow: hidden; }
+.fx-bit { position: absolute; left: 0; top: 0; width: 14px; height: 14px; will-change: transform, opacity; }
+.fx-bit svg { width: 100%; height: 100%; display: block; }
+.card-state { min-height: 46px; display: flex; align-items: center; color: var(--accent-dark); font-size: 0.9em; }
+.card-note { min-height: 46px; display: flex; align-items: center; color: var(--ink-soft); font-size: 0.75em; font-weight: 600; }
+
+/* Окна */
+.modal-host {
+  position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 20; display: flex; align-items: center; justify-content: center;
+  padding: 16px; background: rgba(60, 40, 28, 0.5);
+}
+.modal {
+  width: min(100%, 420px); max-height: 100%; overflow-y: auto; touch-action: pan-y;
+  background: var(--bg); border-radius: 24px; padding: 20px; text-align: center;
+  box-shadow: 0 10px 0 rgba(60, 40, 28, 0.25); animation: modal-in 0.25s ease-out;
+}
+.modal h2 { margin: 0 0 10px; font-size: 1.4em; font-weight: 900; color: var(--accent-dark); }
+.modal-actions { display: flex; flex-direction: column; gap: 10px; margin-top: 16px; }
+.result-cat { width: min(34vmin, 150px); margin: 0 auto 6px; animation: hop 0.55s ease-in-out infinite alternate; }
+.result-cat .cat { width: 100%; height: auto; display: block; }
+.result-line { margin-top: 4px; }
+.result-reward { margin-top: 10px; font-size: 1.5em; font-weight: 900; display: inline-flex; align-items: center; gap: 6px; }
+.diff-list { display: flex; flex-direction: column; gap: 10px; }
+.diff-btn { min-height: 58px; padding: 8px 16px; }
+.diff-name { font-size: 1.1em; }
+.rules { text-align: left; margin: 0; padding-left: 1.4em; font-weight: 600; }
+.rules li { margin: 8px 0; }
+.setting-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 12px 0; text-align: left; }
+.toggle {
+  min-width: 104px; min-height: 48px; border-radius: 14px; background: #E7DCD0; color: var(--ink-soft);
+  padding: 6px 12px; flex: none;
+}
+.toggle.is-on { background: var(--accent); color: #FFFFFF; }
+.table { list-style: none; margin: 0; padding: 0; }
+.table-row { display: flex; gap: 10px; padding: 8px 10px; border-radius: 12px; }
+.table-row.is-me { background: var(--card); }
+.table-rank { width: 1.6em; text-align: right; color: var(--ink-soft); }
+.table-name { flex: 1; text-align: left; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.table-time { font-variant-numeric: tabular-nums; }
+.note { margin-top: 10px; font-size: 0.85em; color: var(--ink-soft); }
+
+/* Всплывающее сообщение */
+.toast {
+  position: fixed; left: 16px; right: 16px; bottom: 20%; z-index: 30; margin: 0 auto;
+  width: -moz-fit-content; width: fit-content; max-width: 420px; padding: 10px 18px; border-radius: 18px; text-align: center;
+  background: rgba(74, 52, 38, 0.94); color: #FFFFFF; font-size: 0.95em; pointer-events: none;
+}
+.toast.is-shown { animation: toast-in 0.2s ease-out; }
+
+/* Заглушка рекламы (только при разработке) */
+.ad-stub {
+  position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 50; background: #2B2118; color: #FFFFFF;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; padding: 20px; text-align: center;
+}
+.ad-stub-bar { width: min(70vw, 300px); height: 10px; border-radius: 5px; background: var(--accent); transform-origin: left; animation: ad-bar 2s linear forwards; }
+
+/* Декор события */
+.decor { position: fixed; top: 0; right: 0; bottom: 0; left: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+.decor span { position: absolute; top: -12%; opacity: 0.7; animation: fall linear infinite; }
+#app { z-index: 1; }
+
+/* Телефон в альбомной ориентации: поле слева, кнопки справа */
+@media (orientation: landscape) and (max-height: 560px) {
+  .screen { max-width: none; }
+  .topbar { min-height: 46px; }
+  .icon-btn { width: 44px; height: 44px; }
+  .game-body { flex-direction: row; align-items: stretch; gap: 14px; }
+  .controls { flex-direction: column; width: auto; justify-content: center; }
+  .mode-switch { flex-direction: column; }
+  .ctl { flex: none; min-width: 92px; min-height: 56px; }
+  .home-main {
+    display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto 1fr auto;
+    column-gap: 24px; row-gap: 6px; justify-items: center; align-items: center;
+  }
+  .logo { grid-column: 1; grid-row: 1; font-size: clamp(26px, 9vh, 44px); }
+  .home-cat { grid-column: 1; grid-row: 2; width: min(42vh, 200px); }
+  .event-banner { grid-column: 1; grid-row: 3; }
+  .home-buttons { grid-column: 2; grid-row: 1 / span 3; gap: 8px; }
+  .btn { min-height: 52px; }
+  .btn-big { min-height: 58px; }
+  .result-cat { width: min(22vh, 110px); }
+  .modal { padding: 14px; }
+  .modal { width: min(100%, 520px); }
+  .modal-actions { flex-direction: row; flex-wrap: wrap; }
+  .modal-actions .btn { flex: 1 1 40%; }
+  .modal-actions .btn-primary { flex-basis: 100%; }
+  .diff-list { flex-direction: row; flex-wrap: wrap; }
+  .diff-btn { flex: 1 1 30%; }
+}
+
+@keyframes breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.04); } }
+@keyframes pop { 0% { transform: scale(0.2); } 100% { transform: scale(1); } }
+@keyframes pulse { 0%, 100% { transform: scale(0.86); opacity: 1; } 50% { transform: scale(1); opacity: 0.6; } }
+@keyframes shake { 0%, 100% { transform: translateX(0); } 20% { transform: translateX(-7%); } 40% { transform: translateX(7%); } 60% { transform: translateX(-5%); } 80% { transform: translateX(5%); } }
+@keyframes wiggle { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-12deg); } 75% { transform: rotate(12deg); } }
+@keyframes hop { 0% { transform: translateY(0); } 100% { transform: translateY(-9%); } }
+@keyframes modal-in { 0% { transform: scale(0.85); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+@keyframes toast-in { 0% { opacity: 0; } 100% { opacity: 1; } }
+@keyframes ad-bar { 0% { transform: scaleX(0); } 100% { transform: scaleX(1); } }
+@keyframes fall { 0% { transform: translateY(0) rotate(0); } 100% { transform: translateY(125vh) rotate(180deg); } }
+@keyframes twinkle { 0%, 100% { transform: scale(0.4) rotate(0); opacity: 0.3; } 50% { transform: scale(1.1) rotate(45deg); opacity: 1; } }
+@keyframes float-up { 0% { transform: translateY(6px) scale(0.6); opacity: 0; } 30% { opacity: 1; } 100% { transform: translateY(-16px) scale(1.1); opacity: 0; } }
+@keyframes glow-pulse { 0%, 100% { opacity: 0.55; transform: scale(0.92); } 50% { opacity: 1; transform: scale(1.04); } }
+@keyframes snow-fall { 0% { transform: translateY(0); opacity: 0; } 15% { opacity: 1; } 100% { transform: translateY(105px); opacity: 0; } }
+
+/* Фон экрана игры задаёт тема поля (body.in-game, переменные --gbg1 и --gbg2). */
+body.in-game { background: linear-gradient(180deg, var(--gbg1, var(--bg)), var(--gbg2, var(--bg2))); }
+body.in-game.game-dark #game-title { color: #F6EEE2; }
+
+/* ===================== Чиби-оформление =====================
+   Мультяшный слой поверх базовых стилей: круглее, объёмнее, мягче. */
+
+/* Фон: тёплый градиент и редкий «горошек». */
+body {
+  background:
+    radial-gradient(circle, rgba(255, 255, 255, 0.55) 0 6px, transparent 7px) 0 0 / 64px 64px,
+    radial-gradient(circle, rgba(255, 255, 255, 0.35) 0 3px, transparent 4px) 32px 32px / 64px 64px,
+    linear-gradient(180deg, var(--bg), var(--bg2));
+}
+
+/* Логотип с белой окантовкой и тёмной «тенью-подложкой», как на обложке. */
+.logo {
+  font-family: "Segoe UI Black", "Segoe UI", system-ui, sans-serif;
+  color: #F47A3C;
+  letter-spacing: 0;
+  text-shadow:
+    3px 0 0 #FFFFFF, -3px 0 0 #FFFFFF, 0 3px 0 #FFFFFF, 0 -3px 0 #FFFFFF,
+    2px 2px 0 #FFFFFF, -2px 2px 0 #FFFFFF, 2px -2px 0 #FFFFFF, -2px -2px 0 #FFFFFF,
+    0 6px 0 #6B3418, 3px 5px 0 #6B3418, -3px 5px 0 #6B3418;
+}
+
+/* Кнопки и карточки: круглее, с бликом сверху и «ступенькой» снизу. */
+.btn {
+  border-radius: 24px;
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0) 55%);
+  box-shadow: 0 5px 0 rgba(90, 66, 51, 0.22), 0 8px 14px rgba(90, 66, 51, 0.08);
+}
+.btn-primary {
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0) 55%);
+  box-shadow: 0 5px 0 var(--accent-dark), 0 8px 14px rgba(201, 89, 46, 0.25);
+}
+.ctl, .mode-switch, .tabs { border-radius: 22px; }
+.mode-switch button, .tabs button { border-radius: 17px; }
+.icon-btn, .pill { box-shadow: 0 4px 0 rgba(90, 66, 51, 0.2); }
+.card { border-radius: 24px; }
+.modal { border-radius: 30px; }
+.toast { border-radius: 22px; }
+
+/* Поле: скруглённое, «игрушечное», с мягкими подушечками-клетками. */
+.board { border-radius: 20px; box-shadow: var(--frame), 0 8px 0 rgba(90, 66, 51, 0.22), 0 16px 26px rgba(90, 66, 51, 0.16); }
+.board.cells-flat { --cell-fx: inset 0 3px 0 rgba(255, 255, 255, 0.38), inset 0 -4px 0 rgba(0, 0, 0, 0.07); }
+.board.cells-soft { --cell-fx: inset 0 3px 0 rgba(255, 255, 255, 0.42), inset 0 -5px 0 rgba(0, 0, 0, 0.08), inset 0 0 0 2px rgba(255, 255, 255, 0.18); }
+
+/* Отметки «пусто» заметнее на любом цвете клетки. Отметка игрока — крупная и тёмная,
+   отметка, которую игра ставит сама, — помельче и светлее, но тоже хорошо видна. */
+.board { --mark: rgba(58, 34, 22, 0.8); }
+.cell.mark::after { width: 24%; height: 24%; }
+.cell.auto::after { width: 17%; height: 17%; opacity: 0.62; }
+.board:not(.mark-dot) .cell.mark::after { width: 46%; height: 46%; }
+.board:not(.mark-dot) .cell.auto::after { width: 29%; height: 29%; }
+
+/* Кот садится в клетку с пружинкой: сжался — вытянулся — замер. */
+.cell .cat { width: 94%; height: 94%; transform-origin: 50% 90%; animation: squish 0.45s cubic-bezier(0.3, 1.4, 0.5, 1); }
+@keyframes squish {
+  0% { transform: translateY(-35%) scale(0.45); }
+  55% { transform: translateY(0) scale(1.14, 0.86); }
+  78% { transform: scale(0.95, 1.06); }
+  100% { transform: scale(1); }
+}
+
+/* Котики в полный рост: дом, победа, магазин. */
+.home-cat { width: min(30vmin, 176px); animation: none; }
+.result-cat { width: min(24vmin, 118px); animation: none; }
+.card-cat { width: 62%; }
+.preview .card-cat { width: 132px; }
+.cat-full { overflow: visible; }
+
+/* Живые котики: моргают, покачивают головой и хвостом. */
+.kc-blink { transform-box: fill-box; transform-origin: center; animation: kc-blink 4.6s infinite; }
+.kc-head { transform-box: view-box; transform-origin: 50px 88px; animation: kc-head 3.8s ease-in-out infinite; }
+.kc-tail { transform-box: view-box; transform-origin: 70px 118px; animation: kc-tail 2.6s ease-in-out infinite; }
+@keyframes kc-blink { 0%, 93%, 100% { transform: scaleY(1); } 96% { transform: scaleY(0.12); } }
+@keyframes kc-head { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(-3.5deg); } }
+@keyframes kc-tail { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(-12deg); } }
+
+@media (orientation: landscape) and (max-height: 560px) {
+  .home-cat { width: min(30vh, 128px); }
+  .result-cat { width: min(17vh, 78px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-cat, .loading-cat, .result-cat, .board.is-won .cat, .decor span,
+  .fx-twinkle, .fx-float, .fx-glow, .fx-fall,
+  .kc-blink, .kc-head, .kc-tail, .cell .cat { animation: none; }
+}
+
+/* ===== Чиби-оформление 2: значки, отклик, окна (этап «живость», 12.11.2026) ===== */
+
+/* Значки объёмные (src/icons.js): лёгкая тень снизу, как у котиков. */
+.ico svg, .btn-ico svg { overflow: visible; }
+.pill .ico { width: 1.45em; height: 1.45em; filter: drop-shadow(0 1px 0 rgba(90, 51, 36, 0.18)); }
+#home-fish .ico, #shop-fish-pill .ico { width: 1.8em; }
+.icon-btn .ico { width: 1.6em; height: 1.6em; }
+.ctl .ico { width: 1.7em; height: 1.7em; }
+.paw.is-lost { filter: grayscale(1); opacity: 0.35; }
+/* Конечный вид — как у потерянной; анимация «отлёта» идёт от целой лапки (both). */
+.paw.is-losing { filter: grayscale(1); opacity: 0.35; animation: paw-lose 0.6s ease-in both; }
+@keyframes paw-lose { 0% { transform: scale(1); opacity: 1; filter: none; } 35% { transform: scale(1.35) rotate(-10deg); opacity: 1; filter: none; } 100% { transform: translateY(-18px) scale(0.6) rotate(25deg); opacity: 0.35; filter: grayscale(1); } }
+.is-bump { animation: bump 0.38s cubic-bezier(0.3, 1.6, 0.5, 1); }
+@keyframes bump { 0% { transform: scale(1); } 45% { transform: scale(1.22); } 100% { transform: scale(1); } }
+
+/* Кнопки главного экрана: значок слева, под названием — пояснение. */
+.btn-icon { flex-direction: row; justify-content: flex-start; gap: 14px; text-align: left; }
+.btn-ico { display: inline-flex; width: 40px; height: 40px; flex: none; filter: drop-shadow(0 2px 0 rgba(90, 51, 36, 0.15)); }
+.btn-ico svg { width: 100%; height: 100%; display: block; }
+.btn-text { display: flex; flex-direction: column; align-items: flex-start; min-width: 0; }
+.btn-big.btn-icon .btn-ico { width: 50px; height: 50px; padding: 5px; border-radius: 16px; background: rgba(255, 255, 255, 0.92); }
+.btn-primary small { color: rgba(255, 255, 255, 0.88); }
+.btn-row .btn-icon { justify-content: center; gap: 8px; }
+.btn-row .btn-ico { width: 32px; height: 32px; }
+.btn:active, .ctl:active, .icon-btn:active { transform: translateY(3px) scale(0.98); }
+
+/* Котик на главном экране отзывается на касание. */
+.home-cat { cursor: pointer; -webkit-tap-highlight-color: transparent; transform-origin: 50% 100%; }
+.home-cat.is-hop { animation: cat-hop 0.65s cubic-bezier(0.3, 1.4, 0.5, 1); }
+@keyframes cat-hop {
+  0% { transform: scale(1); }
+  22% { transform: translateY(3%) scale(1.08, 0.9); }
+  55% { transform: translateY(-14%) scale(0.95, 1.07); }
+  80% { transform: translateY(0) scale(1.04, 0.96); }
+  100% { transform: scale(1); }
+}
+
+/* Фон: медленно плывут облачка, лапки и рыбки. В игре фон спокойный. */
+.ambient { position: fixed; top: 0; right: 0; bottom: 0; left: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+.amb { position: absolute; display: block; animation-name: amb-drift, amb-bob; animation-timing-function: linear, ease-in-out; animation-iteration-count: infinite; animation-direction: alternate; }
+.amb svg { width: 100%; height: 100%; display: block; }
+.amb-cloud { opacity: 0.8; }
+.amb-fish, .amb-paw { opacity: 0.2; }
+body.in-game .ambient { display: none; }
+@keyframes amb-drift { from { translate: -18vw 0; } to { translate: 18vw 0; } }
+@keyframes amb-bob { from { transform: translateY(-6px) rotate(-5deg); } to { transform: translateY(6px) rotate(5deg); } }
+
+/* Итог: звёзды и рыбки. */
+.stars { display: flex; justify-content: center; align-items: flex-end; gap: 4px; margin: 0 0 6px; }
+.star { display: inline-flex; width: 46px; height: 46px; }
+.star svg { width: 100%; height: 100%; }
+.star:nth-child(2) { width: 58px; height: 58px; margin-bottom: 8px; }
+/* both: до начала — первый кадр (звезды не видно), без анимаций — сразу видна. */
+.star.is-on { animation: star-pop 0.5s cubic-bezier(0.3, 1.7, 0.5, 1) both; animation-delay: var(--delay, 0s); }
+.star.is-off { opacity: 0.32; filter: grayscale(1) brightness(1.25); }
+@keyframes star-pop { 0% { opacity: 0; transform: scale(0.2) rotate(-40deg); } 100% { opacity: 1; transform: scale(1) rotate(0); } }
+.result-reward .ico { width: 1.7em; height: 1.3em; }
+.result-reward span:first-child { min-width: 1.6em; text-align: right; font-variant-numeric: tabular-nums; }
+
+/* Поле: комната кота вспыхивает; счётчик котов в шапке. */
+.cell.is-room-done { animation: room-glow 0.7s ease-out; }
+@keyframes room-glow { 0% { filter: brightness(1); } 30% { filter: brightness(1.22) saturate(1.3); } 100% { filter: brightness(1); } }
+.cats-pill .ico { width: 1.6em; height: 1.6em; }
+.cats-pill .cat { width: 100%; height: 100%; }
+/* Шапка игры на узком телефоне: название сжимается, плашки компактнее. */
+.screen-title { min-width: 0; flex: 0 1 auto; }
+@media (max-width: 430px) {
+  #screen-game .topbar { gap: 4px; }
+  #screen-game .spacer { display: none; }
+  #game-cats { margin-left: auto; }
+  #screen-game .pill { padding: 5px 9px; gap: 4px; }
+  #screen-game .paw { width: 1em; height: 1em; }
+  #screen-game .cats-pill .ico { width: 1.15em; height: 1.15em; }
+  #screen-game .screen-title { font-size: 0.95em; }
+  #screen-game .icon-btn { width: 42px; height: 42px; }
+}
+
+/* Окна: появляются с пружинкой, фон под ними размыт. */
+.modal-host { -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px); }
+@keyframes modal-in { 0% { transform: scale(0.82); opacity: 0; } 65% { transform: scale(1.03); opacity: 1; } 100% { transform: scale(1); } }
+.screen.is-active { animation: screen-in 0.18s ease-out; }
+@keyframes screen-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.toast { display: flex; align-items: center; gap: 8px; }
+.toast .ico { width: 1.4em; height: 1.4em; }
+@keyframes toast-in { 0% { opacity: 0; transform: translateY(12px) scale(0.9); } 70% { transform: translateY(-2px) scale(1.03); opacity: 1; } 100% { transform: none; } }
+
+/* Переключатель «таблетка» с бегунком (настройки). */
+.switch {
+  position: relative; width: 62px; height: 36px; flex: none; border-radius: 18px; background: #E2D5C8;
+  box-shadow: inset 0 2px 0 rgba(90, 51, 36, 0.12); transition: background 0.2s;
+}
+.switch::after {
+  content: ""; position: absolute; top: 4px; left: 4px; width: 28px; height: 28px; border-radius: 50%;
+  background: #FFFFFF; box-shadow: 0 2px 0 rgba(90, 51, 36, 0.25); transition: transform 0.22s cubic-bezier(0.3, 1.5, 0.5, 1);
+}
+.switch.is-on { background: var(--accent); }
+.switch.is-on::after { transform: translateX(26px); }
+
+/* Выбор сложности: свой цвет, звёздочки и значок поля. */
+.diff-btn { flex-direction: row; justify-content: flex-start; gap: 12px; text-align: left; border-left: 8px solid var(--dc, var(--accent)); }
+.diff-btn .btn-ico { width: 38px; height: 38px; }
+.diff-text { display: flex; flex-direction: column; align-items: flex-start; flex: 1; min-width: 0; }
+.diff-stars { display: inline-flex; gap: 1px; flex: none; }
+.diff-stars .ico { width: 16px; height: 16px; }
+
+/* Магазин: блик по легендарным карточкам, мягкое свечение у эпических. */
+.card.rar-legendary::after {
+  content: ""; position: absolute; top: 0; right: 0; bottom: 0; left: 0; border-radius: inherit; pointer-events: none;
+  background: linear-gradient(110deg, transparent 38%, rgba(255, 255, 255, 0.6) 50%, transparent 62%);
+  background-size: 300% 100%; animation: sheen 4.2s ease-in-out infinite;
+}
+@keyframes sheen { 0% { background-position: 120% 0; } 45%, 100% { background-position: -20% 0; } }
+.card.rar-epic { box-shadow: var(--shadow), 0 0 16px rgba(180, 140, 242, 0.35); }
+
+/* Статистика: плитки со значками, по две в ряд (в альбомной ориентации — по три). */
+.stats-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; text-align: left; }
+.stat { display: flex; align-items: center; gap: 10px; padding: 10px; border-radius: 16px; background: var(--card); box-shadow: var(--shadow); min-width: 0; }
+.stat .ico { width: 30px; height: 30px; }
+.stat-text { display: flex; flex-direction: column; min-width: 0; }
+.stat-text b { font-size: 1.15em; font-weight: 900; font-variant-numeric: tabular-nums; }
+.stat-text small { font-size: 0.74em; font-weight: 600; color: var(--ink-soft); line-height: 1.2; }
+#screen-home .topbar .icon-btn + .icon-btn { margin-left: 2px; }
+@media (orientation: landscape) and (max-height: 560px) {
+  .stats-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .amb, .home-cat.is-hop, .star.is-on, .cell.is-room-done, .paw.is-losing, .is-bump,
+  .screen.is-active, .card.rar-legendary::after { animation: none; }
+  .ambient { display: none; }
+}
+
+/* ===================== Фоны тем поля (src/scenery.js) =====================
+   Пейзаж внизу (плитки SVG по ширине), предметы на небе и частицы. Размеры — от
+   --scn-h (высота пейзажа) и --scn-s (масштаб частиц), их задаёт контейнер. */
+.scenery { position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 0; pointer-events: none; }
+body:not(.in-game) .scenery { display: none; }
+.scn {
+  --h: var(--scn-h, clamp(90px, 22vh, 190px)); --s: var(--scn-s, 1);
+  position: absolute; top: 0; right: 0; bottom: 0; left: 0; overflow: hidden; pointer-events: none;
+}
+.scn-layer {
+  position: absolute; left: 0; right: 0; bottom: calc(var(--h) * var(--b, 0)); height: calc(var(--h) * var(--k));
+  background-repeat: repeat-x; background-size: auto 100%; background-position: var(--x, 0px) 100%;
+}
+.scn-layer.is-top { top: 0; bottom: auto; background-position: var(--x, 0px) 0; }
+.scn-layer.is-moving { animation: scn-scroll var(--mv) linear infinite; }
+@keyframes scn-scroll {
+  from { background-position-x: var(--x, 0px); }
+  to { background-position-x: calc(var(--x, 0px) - var(--h) * var(--k) * var(--ratio)); }
+}
+.scn-sky { position: absolute; top: 9%; width: calc(var(--sz) * 1px * var(--s)); }
+.scn-sky.is-right { right: 6%; }
+.scn-sky.is-left { left: 5%; }
+.scn-sky svg, .scn-p svg { width: 100%; height: 100%; display: block; overflow: visible; }
+.scn-spin { transform-box: fill-box; transform-origin: center; animation: scn-rot 40s linear infinite; }
+@keyframes scn-rot { to { transform: rotate(360deg); } }
+
+.scn-p { position: absolute; top: 0; z-index: 5; }
+.scn-p > i { display: block; width: calc(var(--sz) * 1px * var(--s)); height: calc(var(--sz) * 1px * var(--s)); }
+.scn-fall, .scn-rise { height: 100%; }
+.scn-fall { animation: scn-fall var(--d) linear var(--dl) infinite; }
+.scn-rise { animation: scn-rise var(--d) linear var(--dl) infinite; }
+@keyframes scn-fall { from { transform: translateY(-10%); } to { transform: translateY(105%); } }
+@keyframes scn-rise { from { transform: translateY(102%); } to { transform: translateY(-16%); } }
+.scn-fall > i, .scn-rise > i { animation: scn-sway calc(var(--d) / 4) ease-in-out var(--dl) infinite alternate; }
+.scn-fall > i.is-spin { animation-name: scn-tumble; }
+@keyframes scn-sway {
+  from { transform: translateX(calc(var(--sw) * -1px * var(--s))) rotate(-14deg); }
+  to { transform: translateX(calc(var(--sw) * 1px * var(--s))) rotate(14deg); }
+}
+@keyframes scn-tumble {
+  from { transform: translateX(calc(var(--sw) * -1px * var(--s))) rotate(0deg); }
+  to { transform: translateX(calc(var(--sw) * 1px * var(--s))) rotate(300deg); }
+}
+.scn-twinkle { animation: scn-tw var(--d) ease-in-out var(--dl) infinite alternate; }
+@keyframes scn-tw { from { opacity: 0.15; transform: scale(0.6); } to { opacity: 1; transform: scale(1.1); } }
+.scn-bob { animation: scn-bob var(--d) ease-in-out var(--dl) infinite alternate; }
+@keyframes scn-bob {
+  from { transform: translate(0, 0) rotate(-6deg); }
+  to { transform: translate(calc(var(--sw) * 2px * var(--s)), calc(-8px * var(--s))) rotate(6deg); }
+}
+.scn-drift { left: 0 !important; width: 100%; animation: scn-drift var(--d) linear var(--dl) infinite; }
+@keyframes scn-drift { from { transform: translateX(-30%); } to { transform: translateX(105%); } }
+.scn-shoot { opacity: 0; animation: scn-shoot var(--d) linear infinite; }
+.scn-shoot > i { height: calc(var(--sz) * 0.17px * var(--s)); transform: rotate(20deg); }
+@keyframes scn-shoot {
+  0% { opacity: 0; transform: translate(0, 0); }
+  3% { opacity: 1; }
+  14% { opacity: 0; transform: translate(calc(240px * var(--s)), calc(88px * var(--s))); }
+  100% { opacity: 0; transform: translate(calc(240px * var(--s)), calc(88px * var(--s))); }
+}
+.scn-flap { transform-box: fill-box; transform-origin: center; animation: scn-flap 0.32s ease-in-out infinite alternate; }
+path.scn-flap { animation-name: scn-flap-y; }
+@keyframes scn-flap { to { transform: scaleX(0.35); } }
+@keyframes scn-flap-y { to { transform: scaleY(0.4); } }
+
+/* Примерка темы в магазине: поле на фоне своей сцены. */
+.scn-box {
+  position: relative; width: 100%; max-width: 264px; height: 246px; margin: 6px auto; border-radius: 20px; overflow: hidden;
+  --scn-h: 66px; --scn-s: 0.6; box-shadow: inset 0 0 0 2px rgba(90, 66, 51, 0.12);
+}
+.preview .scn-box .board-mini { position: relative; z-index: 6; width: 168px; height: 168px; margin: 22px auto 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .scn *, .scn { animation: none !important; }
+  .scn-fall, .scn-rise, .scn-drift, .scn-shoot { display: none; }
+}
+/* Снежинки и снежки видны и на белом. */
+.scn-winter .scn-fall svg { filter: drop-shadow(0 0 1.5px rgba(70, 120, 170, 0.75)); }
+
+/* ===================== Прятки =====================
+   Найденный кот выглядывает из клетки снизу вверх; над клеткой всплывает «Нашёл!»
+   или «Мимо!»; при победе коты выпрыгивают из укрытий и пританцовывают. */
+.cell .cat { animation: peek 0.55s cubic-bezier(0.3, 1.3, 0.5, 1); }
+@keyframes peek {
+  0% { transform: translateY(70%) scale(0.92, 1.08); clip-path: inset(0 0 70% 0); }
+  55% { transform: translateY(-10%) scale(1.06, 0.95); clip-path: inset(-20% -20% -20% -20%); }
+  80% { transform: translateY(2%) scale(0.98, 1.02); clip-path: inset(-20% -20% -20% -20%); }
+  100% { transform: none; clip-path: inset(-20% -20% -20% -20%); }
+}
+.board.is-won .cat {
+  animation: run-out 0.5s cubic-bezier(0.3, 1.4, 0.5, 1) both, hop 0.55s ease-in-out infinite alternate;
+  animation-delay: calc(var(--i) * 70ms), calc(var(--i) * 70ms + 0.5s);
+}
+@keyframes run-out {
+  0% { transform: none; }
+  40% { transform: translateY(-30%) scale(1.12, 0.92) rotate(-8deg); }
+  70% { transform: translateY(4%) scale(0.95, 1.06) rotate(4deg); }
+  100% { transform: none; }
+}
+.find-tag {
+  position: fixed; z-index: 26; transform: translate(-50%, -100%); padding: 3px 10px 4px; border-radius: 999px;
+  background: #FFFFFF; color: #E2683C; font-weight: 900; font-size: 15px; line-height: 1.1; white-space: nowrap;
+  box-shadow: 0 3px 0 rgba(90, 66, 51, 0.22); pointer-events: none; animation: tag-up 0.95s ease-out forwards;
+}
+.find-tag.is-miss { color: #8A6A55; }
+@keyframes tag-up {
+  0% { opacity: 0; transform: translate(-50%, -60%) scale(0.6); }
+  20% { opacity: 1; transform: translate(-50%, -110%) scale(1.08); }
+  70% { opacity: 1; transform: translate(-50%, -150%) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -185%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cell .cat, .board.is-won .cat, .find-tag { animation: none; }
+}

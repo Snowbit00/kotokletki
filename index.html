@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#FFF6EA">
+  <title>Котоклетки</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="ambient" class="ambient" aria-hidden="true"></div>
+  <div id="scenery" class="scenery" aria-hidden="true"></div>
+  <div id="decor" class="decor" aria-hidden="true"></div>
+
+  <main id="app">
+    <section id="screen-loading" class="screen is-active">
+      <div class="loading">
+        <div class="loading-cat" id="loading-cat"></div>
+        <p id="loading-text">Загрузка…</p>
+      </div>
+    </section>
+
+    <section id="screen-home" class="screen">
+      <header class="topbar">
+        <div class="pill" id="home-fish"><span class="ico" data-icon="fish"></span><b id="fish-count">0</b></div>
+        <div class="pill" id="home-streak"><span class="ico" data-icon="flame"></span><b id="streak-count">0</b></div>
+        <span class="spacer"></span>
+        <button class="icon-btn" id="btn-stats" type="button"><span class="ico" data-icon="trophy"></span></button>
+        <button class="icon-btn" id="btn-settings" type="button"><span class="ico" data-icon="gear"></span></button>
+      </header>
+      <div class="home-main">
+        <h1 class="logo" data-t="title">Котоклетки</h1>
+        <div class="home-cat" id="home-cat" role="button" tabindex="0"></div>
+        <p class="event-banner" id="event-banner" hidden></p>
+        <div class="home-buttons">
+          <button class="btn btn-primary btn-big btn-icon" id="btn-level" type="button">
+            <span class="btn-ico" data-icon="grid"></span>
+            <span class="btn-text"><span id="level-label"></span><small id="level-note"></small></span>
+          </button>
+          <button class="btn btn-daily btn-icon" id="btn-daily" type="button">
+            <span class="btn-ico" id="daily-ico"></span>
+            <span class="btn-text"><span data-t="home.daily"></span><small id="daily-status"></small></span>
+          </button>
+          <button class="btn btn-icon" id="btn-free" type="button">
+            <span class="btn-ico" data-icon="dice"></span>
+            <span class="btn-text"><span data-t="home.free"></span><small data-t="home.freeNote"></small></span>
+          </button>
+          <div class="btn-row">
+            <button class="btn btn-icon" id="btn-shop" type="button"><span class="btn-ico" data-icon="bag"></span><span data-t="home.shop"></span></button>
+            <button class="btn btn-icon" id="btn-howto" type="button"><span class="btn-ico" data-icon="help"></span><span data-t="home.howto"></span></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="screen-game" class="screen">
+      <header class="topbar">
+        <button class="icon-btn" id="btn-back" type="button"><span class="ico" data-icon="back"></span></button>
+        <b class="screen-title" id="game-title"></b>
+        <span class="spacer"></span>
+        <div class="pill cats-pill" id="game-cats"><span class="ico" id="game-cats-ico"></span><b id="game-cats-count">0/0</b></div>
+        <div class="pill" id="game-lives" hidden></div>
+        <div class="pill" id="game-timer" hidden>0:00</div>
+      </header>
+      <div class="game-body">
+        <div class="board-col">
+          <p class="coach" id="coach" hidden></p>
+          <div class="board-wrap" id="board-wrap"><div class="board" id="board"></div></div>
+        </div>
+        <div class="controls">
+          <button class="ctl" id="btn-undo" type="button">
+            <span class="ico" data-icon="undo"></span><span data-t="game.undo"></span>
+          </button>
+          <div class="mode-switch" id="mode-switch" role="group">
+            <button type="button" data-mode="cat" class="is-on">
+              <span class="ico" id="mode-cat-ico"></span><span data-t="game.modeCat"></span>
+            </button>
+            <button type="button" data-mode="mark">
+              <span class="ico" data-icon="dot"></span><span data-t="game.modeMark"></span>
+            </button>
+          </div>
+          <button class="ctl" id="btn-hint" type="button">
+            <span class="ico" data-icon="bulb"></span><span data-t="game.hint"></span>
+            <span class="badge" id="hint-badge"></span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section id="screen-shop" class="screen">
+      <header class="topbar">
+        <button class="icon-btn" id="btn-shop-back" type="button"><span class="ico" data-icon="back"></span></button>
+        <b class="screen-title" data-t="shop.title"></b>
+        <span class="spacer"></span>
+        <div class="pill" id="shop-fish-pill"><span class="ico" data-icon="fish"></span><b id="shop-fish">0</b></div>
+      </header>
+      <div class="tabs" id="shop-tabs" role="group">
+        <button type="button" data-tab="cat" class="is-on" data-t="shop.tabCats"></button>
+        <button type="button" data-tab="board" data-t="shop.tabBoards"></button>
+        <button type="button" data-tab="mark" data-t="shop.tabMarks"></button>
+      </div>
+      <div class="shop-grid" id="shop-grid"></div>
+    </section>
+  </main>
+
+  <div class="modal-host" id="modal-host" hidden></div>
+  <div class="toast" id="toast" hidden></div>
+
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>

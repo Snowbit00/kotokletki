@@ -1,0 +1,526 @@
+{
+  "version": 1,
+
+  "rewards": {
+    "level": [3, 2, 1],
+    "free": {
+      "easy": [2, 1, 1],
+      "medium": [3, 2, 1],
+      "hard": [5, 3, 2],
+      "expert": [8, 5, 3],
+      "master": [12, 8, 5]
+    },
+    "daily": 10,
+    "dailySecondTry": 5,
+    "streakBonusPerDay": 1,
+    "streakBonusMax": 7
+  },
+
+  "startHints": 3,
+
+  "levels": {
+    "maxMistakes": 3
+  },
+
+  "ads": {
+    "interstitialEveryLevels": 3
+  },
+
+  "daily": {
+    "maxMistakes": 3,
+    "byWeekday": [
+      { "size": 6, "tier": 2 },
+      { "size": 7, "tier": 2 },
+      { "size": 7, "tier": 3 },
+      { "size": 8, "tier": 3 },
+      { "size": 8, "tier": 4 },
+      { "size": 9, "tier": 4 },
+      { "size": 8, "tier": 3 }
+    ]
+  },
+
+  "shop": {
+    "fishPerAd": 40
+  },
+
+  "cats": [
+    { "id": "ginger", "voice": "classic", "rarity": "common", "name": { "ru": "Рыжик", "en": "Ginger" }, "price": 0, "fur": "#F2A65A", "light": "#FFE4C4", "eyes": "#4A3426" },
+    { "id": "smoky", "voice": "sleepy", "rarity": "common", "name": { "ru": "Дымка", "en": "Smoky" }, "price": 30, "fur": "#9CA7B4", "light": "#E7ECF1", "eyes": "#33414F", "eyeStyle": "sleepy" },
+    { "id": "spot", "voice": "kitten", "rarity": "common", "name": { "ru": "Пятнышко", "en": "Dotty" }, "price": 50, "fur": "#FFF8EE", "light": "#FFFFFF", "eyes": "#4A3426", "pattern": "spots", "pattern1": "#4A4550" },
+    { "id": "snow", "voice": "girl", "rarity": "common", "name": { "ru": "Снежок", "en": "Snowball" }, "price": 60, "ads": 2, "fur": "#FBF7F0", "light": "#FFFFFF", "eyes": "#3B82C4", "eyeStyle": "sparkly" },
+    { "id": "tabby", "voice": { "preset": "classic", "rate": 1.12 }, "rarity": "common", "name": { "ru": "Полосатик", "en": "Stripes" }, "price": 80, "ads": 3, "fur": "#E8AE72", "light": "#FFEBD2", "eyes": "#5A7A2E", "pattern": "tabby", "pattern1": "#B5652B" },
+    { "id": "coal", "voice": "deep", "rarity": "common", "name": { "ru": "Уголёк", "en": "Coal" }, "price": 90, "fur": "#4A4550", "light": "#77717F", "eyes": "#FFD166", "eyeStyle": "cat" },
+
+    { "id": "bow", "voice": "girl", "rarity": "rare", "name": { "ru": "Бантик", "en": "Ribbon" }, "price": 120, "ads": 3, "fur": "#E9BE94", "light": "#FFF1E0", "eyes": "#4A3426", "eyeStyle": "sparkly", "accessories": ["bow"], "accent": "#E8638C" },
+    { "id": "sailor", "voice": { "preset": "classic", "rate": 0.94 }, "rarity": "rare", "name": { "ru": "Морячок", "en": "Sailor" }, "price": 160, "fur": "#C9CED6", "light": "#F4F6F9", "eyes": "#27496D", "accessories": ["cap", "scarf"], "accent": "#2E6FB7", "accent2": "#FFFFFF" },
+    { "id": "smart", "voice": "trill", "rarity": "rare", "name": { "ru": "Умник", "en": "Smarty" }, "ads": 5, "fur": "#C98B5B", "light": "#F6DFC8", "eyes": "#3A2A1E", "pattern": "tabby", "pattern1": "#8E5A33", "accessories": ["glasses"], "accent": "#3A2A1E" },
+    { "id": "chef", "voice": { "preset": "trill", "rate": 0.92 }, "rarity": "rare", "name": { "ru": "Поварёнок", "en": "Little Chef" }, "price": 180, "fur": "#F6E3C8", "light": "#FFFFFF", "eyes": "#4A3426", "eyeStyle": "sleepy", "accessories": ["chef", "scarf"], "accent": "#D7263D", "accent2": "#FFFFFF" },
+    { "id": "music", "voice": "long", "rarity": "rare", "name": { "ru": "Меломан", "en": "Music Fan" }, "price": 200, "ads": 6, "fur": "#9CA7B4", "light": "#E7ECF1", "eyes": "#2E3A4F", "eyeStyle": "sleepy", "accessories": ["headphones"], "accent": "#E8638C", "accent2": "#FFE27A" },
+
+    { "id": "star", "voice": { "preset": "girl", "rate": 1.12 }, "rarity": "epic", "name": { "ru": "Звёздочка", "en": "Superstar" }, "price": 260, "ads": 8, "fur": "#F7C9D9", "light": "#FFF0F5", "eyes": "#4A3426", "accessories": ["sunglasses", "scarf"], "accent": "#E8638C", "accent2": "#FFE27A" },
+    { "id": "siamese", "voice": { "preset": "long", "rate": 1.15 }, "rarity": "epic", "name": { "ru": "Сиамка", "en": "Siamese" }, "price": 280, "fur": "#F3E6D3", "light": "#FFF6EA", "eyes": "#4F9FE3", "eyeStyle": "cat", "pattern": "siamese", "pattern1": "#6B4A3A", "accessories": ["bell"], "accent": "#4F9FE3" },
+    { "id": "gent", "voice": "deep", "rarity": "epic", "name": { "ru": "Джентльмен", "en": "Gentleman" }, "price": 300, "fur": "#2F2B33", "light": "#FFFFFF", "eyes": "#7FD3A0", "eyeStyle": "cat", "pattern": "tuxedo", "pattern1": "#FFFFFF", "accessories": ["tophat", "bell"], "accent": "#D7263D" },
+    { "id": "bandit", "voice": "squeak", "rarity": "epic", "name": { "ru": "Енотик", "en": "Raccoon" }, "price": 320, "fur": "#B8B0A6", "light": "#F2EEE8", "eyes": "#FFE27A", "eyeStyle": "sparkly", "pattern": "mask", "pattern1": "#4A4550", "accessories": ["bandana"], "accent": "#E4572E", "accent2": "#FFFFFF" },
+    { "id": "pirate", "voice": { "preset": "deep", "rate": 0.95 }, "rarity": "epic", "name": { "ru": "Пират", "en": "Pirate" }, "price": 350, "fur": "#FFF6EA", "light": "#FFFFFF", "eyes": "#3A2A1E", "pattern": "calico", "pattern1": "#E38B3A", "pattern2": "#3B302B", "accessories": ["pirate"], "accent": "#D7263D" },
+
+    { "id": "heart", "voice": { "preset": "girl", "rate": 1.04 }, "rarity": "legendary", "name": { "ru": "Сердцеед", "en": "Heartthrob" }, "price": 500, "fur": "#F2A65A", "light": "#FFE4C4", "eyes": "#4F9FE3", "eyes2": "#7BC86C", "eyeStyle": "sparkly", "pattern": "tabby", "pattern1": "#D27F2C", "accessories": ["bow"], "accent": "#E8638C", "effect": "hearts" },
+    { "id": "queen", "voice": "royal", "rarity": "legendary", "name": { "ru": "Королева", "en": "Queen" }, "price": 600, "fur": "#F6E3EC", "light": "#FFFFFF", "eyes": "#7A4EA3", "eyeStyle": "sparkly", "accessories": ["crown"], "accent": "#F2B705", "effect": "sparkle" },
+    { "id": "astro", "voice": "kitten", "rarity": "legendary", "name": { "ru": "Космонавт", "en": "Astronaut" }, "price": 700, "fur": "#C9CED6", "light": "#F4F6F9", "eyes": "#2E6FB7", "eyeStyle": "sparkly", "pattern": "spots", "pattern1": "#A7AEB8", "accessories": ["astronaut"], "accent": "#DDE8F2", "effect": "sparkle" },
+    { "id": "angel", "voice": { "preset": "long", "rate": 1.22 }, "rarity": "legendary", "name": { "ru": "Ангел", "en": "Angel" }, "price": 800, "fur": "#FFFFFF", "light": "#FFF6EA", "eyes": "#7AA7E0", "eyeStyle": "sparkly", "accessories": ["halo", "wreath"], "accent": "#FFD95A", "accent2": "#F7A8C4", "effect": "glow" },
+
+    { "id": "santa", "voice": "kitten", "rarity": "epic", "name": { "ru": "Снежинка", "en": "Snowflake" }, "event": "newyear", "fur": "#E8EEF4", "light": "#FFFFFF", "eyes": "#2F6FA8", "eyeStyle": "sparkly", "accessories": ["santa", "scarf"], "accent": "#D7263D", "accent2": "#FFFFFF", "effect": "snow" },
+    { "id": "mimosa", "voice": "girl", "rarity": "epic", "name": { "ru": "Мимоза", "en": "Mimosa" }, "event": "march8", "fur": "#F7D9A8", "light": "#FFF5E1", "eyes": "#4A7A3A", "accessories": ["wreath"], "accent": "#F2C200", "accent2": "#F7A8C4", "effect": "hearts" },
+    { "id": "witch", "voice": { "preset": "trill", "rate": 1.12 }, "rarity": "epic", "name": { "ru": "Ведьмочка", "en": "Little Witch" }, "event": "halloween", "fur": "#5B4B6B", "light": "#8C7B9E", "eyes": "#B6F36A", "eyeStyle": "cat", "accessories": ["witch"], "accent": "#7B3FA0", "effect": "sparkle" }
+  ],
+
+  "boards": [
+    {
+      "id": "pastel", "scenery": "dreamy", "rarity": "common", "name": { "ru": "Пастель", "en": "Pastel" }, "price": 0,
+      "line": "#5A4233", "texture": "none", "cells": "soft", "frame": "plain", "mark": "dot", "win": "confetti",
+      "colors": ["#F9C7C4", "#FBE3A1", "#CDE9B4", "#A9DDD6", "#A8D0F0", "#C5C0F0", "#E8BDEB", "#F6C48E", "#DCD3C6", "#9FCFA4", "#E79C9C", "#96A9DC"]
+    },
+    {
+      "id": "paper", "scenery": "watercolor", "rarity": "common", "name": { "ru": "Акварель", "en": "Watercolor" }, "ads": 2,
+      "line": "#7A6A5E", "texture": "paper", "cells": "flat", "frame": "plain", "mark": "cross", "win": "petals",
+      "colors": ["#FFCBC0", "#E6BC9A", "#E8DAAB", "#B7CA9D", "#B3E6C5", "#88D1C7", "#98E6F4", "#90CBED", "#C3DBFF", "#CCBCEA", "#FCCCEE", "#F2B3C0"]
+    },
+    {
+      "id": "vivid", "scenery": "party", "rarity": "rare", "name": { "ru": "Яркое", "en": "Vivid" }, "price": 100, "ads": 4,
+      "line": "#3A2A20", "texture": "tiles", "cells": "bevel", "frame": "plain", "mark": "star", "win": "confetti",
+      "colors": ["#FF9AA2", "#FFD166", "#A8E06C", "#5ED3C3", "#6CB8FF", "#9B8CFF", "#E58CF0", "#FFA95E", "#C9B89E", "#6FCF8B", "#FF7B7B", "#7C93E8"]
+    },
+    {
+      "id": "wood", "scenery": "cabin", "rarity": "rare", "name": { "ru": "Деревянный дом", "en": "Wooden House" }, "price": 150,
+      "line": "#6B3F18", "texture": "wood", "cells": "bevel", "frame": "wood", "mark": "paw", "win": "fish",
+      "background": { "from": "#FFF3E3", "to": "#F3D9B8" },
+      "colors": ["#FFC2AB", "#DCB586", "#D8D49B", "#A2C593", "#98E0C2", "#6ACBC9", "#81DFF8", "#85C2F0", "#C3CFFF", "#D1B0E3", "#FFBEE1", "#F3A7AE"]
+    },
+    {
+      "id": "grass", "scenery": "meadow", "rarity": "rare", "name": { "ru": "Лужайка", "en": "Meadow" }, "price": 150, "ads": 4,
+      "line": "#3E6B2E", "texture": "grass", "cells": "soft", "frame": "plain", "mark": "paw", "win": "petals",
+      "background": { "from": "#EAF7DC", "to": "#CFEBB2" },
+      "colors": ["#F9E0A5", "#C1D397", "#B5F0C3", "#7FDDCB", "#87F3FF", "#7FD7FF", "#BCE5FF", "#D0C4FF", "#FFD1FF", "#FFB6CD", "#FFCEC5", "#FAC099"]
+    },
+    {
+      "id": "sea", "scenery": "seaside", "rarity": "rare", "name": { "ru": "Морская", "en": "Seaside" }, "price": 200, "ads": 5,
+      "line": "#1F4E79", "texture": "waves", "cells": "soft", "frame": "ice", "mark": "fish", "win": "fish",
+      "background": { "from": "#E6F6FF", "to": "#BFE3F7" },
+      "colors": ["#96F1FC", "#8CD6F9", "#C2E5FF", "#D0C5F9", "#FFD3FE", "#FFB9CD", "#FFD1C9", "#F5C19F", "#F6E1AD", "#C3D29E", "#BBEFC7", "#8BDBCB"]
+    },
+    {
+      "id": "autumn", "scenery": "orchard", "rarity": "rare", "name": { "ru": "Осенний сад", "en": "Autumn Garden" }, "price": 220,
+      "line": "#7A3E1A", "texture": "paper", "cells": "bevel", "frame": "wood", "mark": "cross", "win": "confetti",
+      "background": { "from": "#FFF4E6", "to": "#F6D7B5" },
+      "colors": ["#FFBD9F", "#D4B17C", "#CDD093", "#95C18F", "#89DCC0", "#59C6C9", "#76D9F9", "#81BCEF", "#C3C8FF", "#D2A8DC", "#FFB7D7", "#F1A1A3"]
+    },
+    {
+      "id": "night", "scenery": "rooftops", "rarity": "epic", "name": { "ru": "Ночь", "en": "Night" }, "price": 260, "ads": 6,
+      "dark": true, "line": "#EFE4D2", "texture": "fabric", "cells": "soft", "frame": "neon", "mark": "star", "win": "stars",
+      "background": { "from": "#3A3550", "to": "#22202F", "dark": true },
+      "colors": ["#975E58", "#785136", "#7B6C41", "#515E34", "#4B7756", "#166459", "#197882", "#05617D", "#4E6F98", "#5B547E", "#886083", "#80495A"]
+    },
+    {
+      "id": "candy", "scenery": "sweets", "rarity": "epic", "name": { "ru": "Карамель", "en": "Candy" }, "price": 280,
+      "line": "#A0335E", "texture": "candy", "cells": "bevel", "frame": "candy", "mark": "heart", "win": "hearts",
+      "background": { "from": "#FFF0F5", "to": "#FFD6E7" },
+      "colors": ["#FFCEFE", "#FFB4C8", "#FFCEBF", "#F9C193", "#F4E2A1", "#BBD597", "#ABF2C6", "#74DED0", "#7FF3FF", "#7DD6FF", "#C1E4FF", "#D7C2FF"]
+    },
+    {
+      "id": "glass", "scenery": "cathedral", "rarity": "epic", "name": { "ru": "Витраж", "en": "Stained Glass" }, "price": 320,
+      "line": "#1E1A17", "texture": "tiles", "cells": "bevel", "frame": "gold", "mark": "heart", "win": "stars",
+      "colors": ["#E4572E", "#F2B134", "#76B041", "#17BEBB", "#3A86FF", "#8338EC", "#D7569B", "#FF8C42", "#A39171", "#2E9E6B", "#C8553D", "#4F6DB0"]
+    },
+    {
+      "id": "sky", "scenery": "space", "rarity": "legendary", "name": { "ru": "Звёздное небо", "en": "Starry Sky" }, "price": 600,
+      "dark": true, "line": "#FFE08A", "texture": "stars", "cells": "soft", "frame": "gold", "mark": "star", "win": "stars",
+      "background": { "from": "#1B1E3A", "to": "#0E1024", "dark": true },
+      "colors": ["#006185", "#214875", "#615281", "#66365B", "#874556", "#70362D", "#79512E", "#504716", "#4B6030", "#155132", "#00665D", "#005261"]
+    },
+    {
+      "id": "snowy", "scenery": "winter", "rarity": "epic", "name": { "ru": "Снежная", "en": "Snowy" }, "event": "newyear",
+      "line": "#3E6E99", "texture": "snow", "cells": "soft", "frame": "ice", "mark": "star", "win": "snow",
+      "background": { "from": "#F2F9FF", "to": "#D6E9F8" },
+      "colors": ["#9FFAFF", "#8EDCFC", "#C5EFFF", "#D0CCFF", "#FFDDFF", "#FFBFD7", "#FFD9D5", "#FEC6A7", "#FFE8B6", "#CED7A1", "#C8F7CB", "#94E0CC"]
+    }
+  ],
+
+  "marks": [
+    { "id": "theme", "rarity": "common", "name": { "ru": "Как у поля", "en": "Board default" }, "price": 0 },
+    { "id": "dot", "rarity": "common", "name": { "ru": "Точка", "en": "Dot" }, "price": 0 },
+    { "id": "cross", "rarity": "common", "name": { "ru": "Крестик", "en": "Cross" }, "price": 0 },
+    { "id": "paw", "rarity": "common", "name": { "ru": "Кошачья лапка", "en": "Cat Paw" }, "price": 40 },
+    { "id": "fish", "rarity": "common", "name": { "ru": "Рыбка", "en": "Fish" }, "price": 50 },
+    { "id": "heart", "rarity": "common", "name": { "ru": "Сердечко", "en": "Heart" }, "price": 60, "ads": 2 },
+    { "id": "star", "rarity": "common", "name": { "ru": "Звёздочка", "en": "Star" }, "price": 60, "ads": 2 },
+
+    { "id": "bone", "rarity": "rare", "name": { "ru": "Косточка", "en": "Bone" }, "price": 120, "ads": 3 },
+    { "id": "dogpaw", "rarity": "rare", "name": { "ru": "Собачий след", "en": "Dog Paw" }, "price": 120 },
+    { "id": "mouse", "rarity": "rare", "name": { "ru": "Мышка", "en": "Mouse" }, "price": 150, "ads": 4 },
+    { "id": "yarn", "rarity": "rare", "name": { "ru": "Клубок", "en": "Yarn Ball" }, "price": 160 },
+    { "id": "flower", "rarity": "rare", "name": { "ru": "Цветочек", "en": "Flower" }, "price": 140 },
+    { "id": "anchor", "rarity": "rare", "name": { "ru": "Якорь", "en": "Anchor" }, "price": 180 },
+
+    { "id": "car", "rarity": "epic", "name": { "ru": "Машинка", "en": "Toy Car" }, "price": 260, "ads": 7 },
+    { "id": "skull", "rarity": "epic", "name": { "ru": "Весёлый Роджер", "en": "Jolly Roger" }, "price": 300 },
+    { "id": "ghost", "rarity": "epic", "name": { "ru": "Привидение", "en": "Ghost" }, "price": 280 },
+    { "id": "rocket", "rarity": "epic", "name": { "ru": "Ракета", "en": "Rocket" }, "price": 320 },
+
+    { "id": "crown", "rarity": "legendary", "name": { "ru": "Корона", "en": "Crown" }, "price": 500 },
+    { "id": "diamond", "rarity": "legendary", "name": { "ru": "Алмаз", "en": "Diamond" }, "price": 600 }
+  ],
+
+  "events": [
+    {
+      "id": "newyear",
+      "from": "12-20",
+      "to": "01-10",
+      "name": { "ru": "Новый год", "en": "New Year" },
+      "decor": "❄",
+      "theme": { "--bg": "#EEF6FC", "--bg2": "#D6E9F8", "--accent": "#D7263D" },
+      "goal": 5,
+      "reward": "santa",
+      "rewardBoard": "snowy"
+    },
+    {
+      "id": "march8",
+      "from": "03-01",
+      "to": "03-10",
+      "name": { "ru": "8 Марта", "en": "Spring Holiday" },
+      "decor": "🌷",
+      "theme": { "--bg": "#FFF4F7", "--bg2": "#FFDDE8", "--accent": "#E8638C" },
+      "goal": 3,
+      "reward": "mimosa"
+    },
+    {
+      "id": "halloween",
+      "from": "10-25",
+      "to": "11-02",
+      "name": { "ru": "Хэллоуин", "en": "Halloween" },
+      "decor": "🎃",
+      "theme": { "--bg": "#FFF1E0", "--bg2": "#FFD3A3", "--accent": "#7B3FA0" },
+      "goal": 3,
+      "reward": "witch"
+    }
+  ],
+
+  "texts": {
+    "ru": {
+      "title": "Котоклетки",
+      "loading": "Загрузка…",
+      "preparing": "Готовим уровень…",
+
+      "home.daily": "Задача дня",
+      "home.dailyNew": "Новая задача ждёт",
+      "home.dailyDone": "Решена за {t}",
+      "home.dailyDoneLate": "Решена со второй попытки",
+      "home.dailyFailed": "Не получилось. Завтра будет новая",
+      "home.dailyRetry": "Есть вторая попытка",
+      "home.level": "Уровень {n}",
+      "home.levelNote": "Поле {n}×{n}",
+      "home.free": "Свободная игра",
+      "home.freeNote": "Сложность на выбор",
+      "home.shop": "Магазин",
+      "home.howto": "Как играть",
+      "home.streak": "Дней подряд: {n}",
+
+      "game.level": "Уровень {n}",
+      "game.daily": "Задача дня",
+      "game.modeCat": "Кот",
+      "game.modeMark": "Пусто",
+      "game.undo": "Отмена",
+      "game.hint": "Подсказка",
+      "game.hintAd": "за ролик",
+      "game.tries": "Осталось ошибок: {n}",
+
+      "msg.wrong": "Тут никого — кот прячется в другом месте",
+      "msg.near": "Коты не прячутся рядом, даже наискосок",
+      "msg.row": "В этой строке кот уже найден",
+      "msg.col": "В этом столбце кот уже найден",
+      "msg.room": "В этой комнате кот уже найден",
+      "msg.locked": "Здесь точно пусто",
+      "msg.noAd": "Реклама сейчас недоступна",
+
+      "hint.room": "В этой комнате осталось одно укрытие",
+      "hint.row": "В этой строке осталось одно укрытие",
+      "hint.col": "В этом столбце осталось одно укрытие",
+      "hint.any": "Кот прячется только здесь",
+
+      "tut.start": "В каждой комнате прячется один кот. Найдите его — коснитесь мигающей клетки.",
+      "tut.done": "Отлично! Дальше — сами.",
+
+      "win.title": "Все коты найдены!",
+      "find.found1": "Нашёл!",
+      "find.found2": "Вот ты где!",
+      "find.found3": "Попался!",
+      "find.miss": "Мимо!",
+      "win.time": "Время: {t}",
+      "win.mistakes": "Ошибок: {n}",
+      "win.clean": "Без ошибок!",
+      "win.streak": "Дней подряд: {n}",
+      "win.next": "Дальше",
+      "win.home": "Домой",
+      "win.table": "Таблица дня",
+
+      "fail.title": "Попытка закончилась",
+      "fail.text": "Три ошибки — коты перепрятались. Попробуете ещё раз?",
+      "fail.retry": "Вторая попытка за ролик",
+      "fail.used": "Вторая попытка уже использована. Завтра будет новая задача.",
+      "fail.levelText": "Три ошибки — коты перепрятались. Можно продолжить с одной попыткой или начать уровень заново.",
+      "fail.continue": "Ещё попытка за ролик",
+      "fail.continueFree": "Ещё одна попытка",
+      "fail.retryFree": "Попробовать ещё раз",
+      "fail.restart": "Начать заново",
+      "fail.home": "Домой",
+
+      "diff.title": "Сложность",
+      "diff.easy": "Лёгкий",
+      "diff.medium": "Средний",
+      "diff.hard": "Сложный",
+      "diff.expert": "Эксперт",
+      "diff.master": "Мастер",
+      "diff.level": "уровень {n}",
+
+      "shop.title": "Магазин",
+      "shop.tabCats": "Котики",
+      "shop.tabBoards": "Поля",
+      "shop.tabMarks": "Метки",
+      "shop.buy": "Взять",
+      "shop.watch": "Ролик {n}/{m}",
+      "shop.wear": "Выбрать",
+      "shop.worn": "Выбрано",
+      "shop.event": "Награда события «{name}»",
+      "shop.notEnough": "Не хватает рыбок",
+      "shop.newCat": "Новый котик: {name}!",
+      "shop.newBoard": "Новое оформление: {name}!",
+      "shop.newMark": "Новая метка: {name}!",
+      "shop.markNote": "Метка «пусто» на поле",
+      "shop.markTheme": "Меняется с полем",
+      "shop.markThemeNow": "У каждого поля своя метка. Сейчас: {name}",
+      "shop.mine": "Ваши",
+      "shop.forSale": "В магазине",
+      "shop.voice": "Голос: {name}",
+      "shop.listen": "Послушать",
+      "shop.close": "Закрыть",
+      "voice.classic": "обычный",
+      "voice.kitten": "котёнок",
+      "voice.girl": "нежный",
+      "voice.long": "протяжный",
+      "voice.deep": "басовитый",
+      "voice.trill": "мурлыка",
+      "voice.squeak": "пискля",
+      "voice.royal": "важный",
+      "voice.sleepy": "сонный",
+      "rarity.common": "Обычный",
+      "rarity.rare": "Редкий",
+      "rarity.epic": "Эпический",
+      "rarity.legendary": "Легендарный",
+
+      "event.progress": "{name}: решено задач дня {n} из {m}",
+      "event.done": "{name}: награда получена",
+
+      "howto.title": "Как играть",
+      "howto.r1": "В каждой комнате, строке и столбце прячется ровно один кот.",
+      "howto.r2": "Коты не прячутся рядом, даже наискосок.",
+      "howto.r3": "Коснитесь клетки, где прячется кот, — он выглянет.",
+      "howto.r4": "Долгое нажатие или кнопка «Пусто» ставит отметку «здесь кота нет».",
+      "howto.r5": "На поле даётся три ошибки. Уровень можно начать заново, в задаче дня есть вторая попытка за ролик.",
+      "howto.ok": "Понятно",
+
+      "stats.title": "Статистика",
+      "stats.level": "Уровень сейчас",
+      "stats.levels": "Пройдено уровней",
+      "stats.free": "Свободная игра",
+      "stats.dailies": "Задач дня решено",
+      "stats.streak": "Серия дней · рекорд",
+      "stats.bestDaily": "Лучшее время дня",
+      "stats.perfect": "Побед без ошибок",
+      "stats.cats": "Котов найдено",
+      "stats.hints": "Подсказок взято",
+      "stats.fish": "Рыбок заработано",
+      "stats.collCats": "Котики",
+      "stats.collBoards": "Поля",
+      "stats.collMarks": "Метки",
+      "stats.time": "Время в игре",
+      "stats.minutes": "{m} мин",
+      "stats.hours": "{h} ч {m} мин",
+      "stats.note": "Статистика своя у каждого игрока и хранится вместе с его прогрессом.",
+      "stats.close": "Закрыть",
+      "settings.title": "Настройки",
+      "settings.sound": "Звук",
+      "settings.meow": "«Мяу», когда кот найден",
+      "settings.autoMark": "Отмечать пустые клетки",
+      "settings.lang": "Язык",
+      "settings.close": "Готово",
+      "on": "Вкл",
+      "off": "Выкл",
+
+      "lb.title": "Таблица дня",
+      "lb.empty": "Пока никто не решил. Будьте первым!",
+      "lb.secondTry": "В таблицу попадает только первая попытка. Завтра получится!",
+      "lb.you": "Вы",
+      "lb.auth": "Войдите в аккаунт площадки, чтобы попасть в таблицу.",
+      "lb.close": "Закрыть",
+
+      "ad.stub": "Реклама (заглушка для разработки)"
+    },
+    "en": {
+      "title": "Cat Cells",
+      "loading": "Loading…",
+      "preparing": "Preparing the level…",
+
+      "home.daily": "Daily Puzzle",
+      "home.dailyNew": "A new puzzle is waiting",
+      "home.dailyDone": "Solved in {t}",
+      "home.dailyDoneLate": "Solved on the second try",
+      "home.dailyFailed": "No luck. A new one comes tomorrow",
+      "home.dailyRetry": "You have a second try",
+      "home.level": "Level {n}",
+      "home.levelNote": "Board {n}×{n}",
+      "home.free": "Free Play",
+      "home.freeNote": "Pick a difficulty",
+      "home.shop": "Shop",
+      "home.howto": "How to play",
+      "home.streak": "Days in a row: {n}",
+
+      "game.level": "Level {n}",
+      "game.daily": "Daily Puzzle",
+      "game.modeCat": "Cat",
+      "game.modeMark": "Empty",
+      "game.undo": "Undo",
+      "game.hint": "Hint",
+      "game.hintAd": "for a video",
+      "game.tries": "Mistakes left: {n}",
+
+      "msg.wrong": "Nobody here — the cat is hiding elsewhere",
+      "msg.near": "Cats never hide side by side, not even diagonally",
+      "msg.row": "The cat in this row is already found",
+      "msg.col": "The cat in this column is already found",
+      "msg.room": "The cat in this room is already found",
+      "msg.locked": "This cell is empty for sure",
+      "msg.noAd": "No ad is available right now",
+
+      "hint.room": "Only one hiding spot is left in this room",
+      "hint.row": "Only one hiding spot is left in this row",
+      "hint.col": "Only one hiding spot is left in this column",
+      "hint.any": "A cat can only hide here",
+
+      "tut.start": "One cat hides in every room. Find it — tap the blinking cell.",
+      "tut.done": "Great! Now try on your own.",
+
+      "win.title": "All cats found!",
+      "find.found1": "Found you!",
+      "find.found2": "There you are!",
+      "find.found3": "Gotcha!",
+      "find.miss": "Miss!",
+      "win.time": "Time: {t}",
+      "win.mistakes": "Mistakes: {n}",
+      "win.clean": "No mistakes!",
+      "win.streak": "Days in a row: {n}",
+      "win.next": "Next",
+      "win.home": "Home",
+      "win.table": "Today's table",
+
+      "fail.title": "Out of tries",
+      "fail.text": "Three mistakes and the cats hid again. Try again?",
+      "fail.retry": "Second try for a video",
+      "fail.used": "The second try is used. A new puzzle comes tomorrow.",
+      "fail.levelText": "Three mistakes and the cats hid again. Continue with one more try or start the level over.",
+      "fail.continue": "One more try for a video",
+      "fail.continueFree": "One more try",
+      "fail.retryFree": "Try again",
+      "fail.restart": "Start over",
+      "fail.home": "Home",
+
+      "diff.title": "Difficulty",
+      "diff.easy": "Easy",
+      "diff.medium": "Medium",
+      "diff.hard": "Hard",
+      "diff.expert": "Expert",
+      "diff.master": "Master",
+      "diff.level": "level {n}",
+
+      "shop.title": "Shop",
+      "shop.tabCats": "Cats",
+      "shop.tabBoards": "Boards",
+      "shop.tabMarks": "Marks",
+      "shop.buy": "Get",
+      "shop.watch": "Video {n}/{m}",
+      "shop.wear": "Choose",
+      "shop.worn": "Chosen",
+      "shop.event": "Reward of the “{name}” event",
+      "shop.notEnough": "Not enough fish",
+      "shop.newCat": "New cat: {name}!",
+      "shop.newBoard": "New board style: {name}!",
+      "shop.newMark": "New mark: {name}!",
+      "shop.markNote": "The “empty” mark on the board",
+      "shop.markTheme": "Changes with the board",
+      "shop.markThemeNow": "Each board has its own mark. Now: {name}",
+      "shop.mine": "Yours",
+      "shop.forSale": "In the shop",
+      "shop.voice": "Voice: {name}",
+      "shop.listen": "Listen",
+      "shop.close": "Close",
+      "voice.classic": "classic",
+      "voice.kitten": "kitten",
+      "voice.girl": "sweet",
+      "voice.long": "long",
+      "voice.deep": "deep",
+      "voice.trill": "trilly",
+      "voice.squeak": "squeaky",
+      "voice.royal": "royal",
+      "voice.sleepy": "sleepy",
+      "rarity.common": "Common",
+      "rarity.rare": "Rare",
+      "rarity.epic": "Epic",
+      "rarity.legendary": "Legendary",
+
+      "event.progress": "{name}: daily puzzles solved {n} of {m}",
+      "event.done": "{name}: reward received",
+
+      "howto.title": "How to play",
+      "howto.r1": "Exactly one cat hides in every room, row and column.",
+      "howto.r2": "Cats never hide side by side, not even diagonally.",
+      "howto.r3": "Tap the cell where a cat hides — it will peek out.",
+      "howto.r4": "A long press or the “Empty” button marks a cell as “no cat here”.",
+      "howto.r5": "Each board allows three mistakes. A level can be started over, the daily puzzle has a second try for a video.",
+      "howto.ok": "Got it",
+
+      "stats.title": "Statistics",
+      "stats.level": "Current level",
+      "stats.levels": "Levels solved",
+      "stats.free": "Free play",
+      "stats.dailies": "Daily puzzles solved",
+      "stats.streak": "Day streak · record",
+      "stats.bestDaily": "Best daily time",
+      "stats.perfect": "Wins without mistakes",
+      "stats.cats": "Cats found",
+      "stats.hints": "Hints used",
+      "stats.fish": "Fish earned",
+      "stats.collCats": "Cats",
+      "stats.collBoards": "Boards",
+      "stats.collMarks": "Marks",
+      "stats.time": "Time played",
+      "stats.minutes": "{m} min",
+      "stats.hours": "{h} h {m} min",
+      "stats.note": "Each player has their own statistics, stored with their progress.",
+      "stats.close": "Close",
+      "settings.title": "Settings",
+      "settings.sound": "Sound",
+      "settings.meow": "“Meow” when a cat is found",
+      "settings.autoMark": "Mark empty cells",
+      "settings.lang": "Language",
+      "settings.close": "Done",
+      "on": "On",
+      "off": "Off",
+
+      "lb.title": "Today's table",
+      "lb.empty": "Nobody has solved it yet. Be the first!",
+      "lb.secondTry": "Only the first try goes to the table. Good luck tomorrow!",
+      "lb.you": "You",
+      "lb.auth": "Sign in to the platform account to appear in the table.",
+      "lb.close": "Close",
+
+      "ad.stub": "Ad (development stub)"
+    }
+  }
+}
